@@ -1,21 +1,36 @@
-#include "iostream"
+#include "iostream"  // 标准输入输出库
 using namespace std;
+
+/*
+ * 知识点总结：
+ * - 条件判断：使用 if-else 语句根据不同收入区间计算所得税。
+ * - 循环控制：使用 while 循环持续读取用户输入的收入。
+ * - I/O 操作：使用 cin 读取用户输入，使用 cout 输出结果。
+ * - 税率计算：根据收入不同区间应用不同税率。
+ *
+ * 注意点：
+ * - 输入验证：检查用户输入的收入必须为正数。
+ * - 循环退出条件：当输入非正数时，循环终止。
+ * - 税率区间：确保收入的不同区间使用正确的税率计算。
+ */
+
 int main()
 {
     double income;
 
-        cout << "输入收入：";
-    while (cin >> income && income > 0)
+    cout << "输入收入：";  // 提示输入收入
+    while (cin >> income && income > 0)  // 读取收入，如果输入为正数则继续循环
     {
         if (income <= 5000)
-            cout << "所得税 = 0 tvarps\n";
+            cout << "所得税 = 0 tvarps\n";  // 收入不超过 5000 时，所得税为 0
         else if (income <= 15000)
-            cout << "所得税 = " << (income - 5000) * 0.10 << " tvarps\n";
+            cout << "所得税 = " << (income - 5000) * 0.10 << " tvarps\n";  // 收入在 5001 到 15000 之间，税率 10%
         else if (income <= 35000)
-            cout << "所得税 = " << (income - 15000) * 0.15 + 10000 * 0.10 << " tvarps\n";
+            cout << "所得税 = " << (income - 15000) * 0.15 + 10000 * 0.10 << " tvarps\n";  // 收入在 15001 到 35000 之间，税率 15%
         else
-            cout << "所得税 = " << (income - 35000) * 0.20 + 10000 * 0.10 + 20000 * 0.15 << " tvarps\n";
-        cout << "输入收入：";
+            cout << "所得税 = " << (income - 35000) * 0.20 + 10000 * 0.10 + 20000 * 0.15 << " tvarps\n";  // 收入超过 35000，税率 20%
+
+        cout << "输入收入：";  // 提示输入下一个收入
     }
-    return 0;
+    return 0;  // 返回 0 表示程序成功执行
 }

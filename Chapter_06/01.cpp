@@ -1,23 +1,48 @@
 #include "iostream"
 using namespace std;
-// 读取字符串，识别空格以及字符总数。
+
+/*
+ * 知识点总结和注意点：
+ *
+ * 1. 读取字符：
+ *    - 使用 `cin.get(ch)` 来逐个读取字符，包括空格和换行符。
+ *
+ * 2. 空格和字符统计：
+ *    - 使用 `if (ch == ' ')` 来判断字符是否为空格，并统计空格的数量。
+ *    - 使用 `++total` 来统计总字符数。
+ *
+ * 3. 循环结束条件：
+ *    - 当遇到字符 `'.'` 时结束循环。
+ *
+ * 注意点：
+ *
+ * - 初始读取：
+ *   - 在循环外先读取第一个字符，确保进入循环时 `ch` 已经初始化。
+ *
+ * - 循环条件：
+ *   - 循环条件是 `ch != '.'`，确保遇到 `'.'` 时结束读取。
+ *
+ * - 统计字符总数：
+ *   - 无论字符是否为空格，每读取一个字符都需要增加 `total` 计数。
+ */
+
 int main()
 {
-    int spaces = 0;
-    int total = 0;
+    int spaces = 0;  // 记录空格数量
+    int total = 0;   // 记录字符总数
     char ch;
 
-    cin.get();
-    while (ch != '.')       // 判断'.'结束循环
+    cin.get(ch);     // 读取第一个字符
+    while (ch != '.') // 判断是否为'.'，如果是则结束循环
     {
         if (ch == ' ')
         {
-            ++spaces;      // 采集空格字符
+            ++spaces; // 统计空格字符
         }
-        ++total;        // 采集字符
-        cin.get(ch);
+        ++total;      // 统计所有字符
+        cin.get(ch);  // 读取下一个字符
     }
-    cout << "spaces = " << spaces << endl;
-    cout << "total = " << total << endl;
+    cout << "spaces = " << spaces << endl; // 输出空格数量
+    cout << "total = " << total << endl;   // 输出字符总数
     return 0;
 }
