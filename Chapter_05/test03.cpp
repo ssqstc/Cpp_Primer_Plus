@@ -1,14 +1,29 @@
 #include "iostream"
 using namespace std;
 
+/*
+知识点总结和注意点：
+1. `do-while` 循环：
+   - `do-while` 循环确保循环体至少执行一次。
+   - 适用于需要先执行操作再进行条件判断的情况。
+
+2. 输入和输出：
+   - 使用 `cin` 从用户输入读取数字。
+   - 使用 `cout` 输出累计和。
+
+注意点：
+- 在读取用户输入时，注意检查输入是否为数字，以避免意外输入导致程序错误。
+- 循环条件为 `num != 0`，当输入为 0 时循环结束。
+*/
+
 int main()
 {
-    double num, sum = 0;
+    double num, sum = 0; // 初始化变量
     do {
-        cout << "输入一个数字：";
-        cin >> num;
-        sum += num;
-        cout << "目前为止累计和：" << sum << endl;
-    } while (num != 0);
-    return 0 ;
+        cout << "输入一个数字："; // 提示用户输入数字
+        cin >> num; // 读取用户输入的数字
+        sum += num; // 将输入的数字累加到 sum
+        cout << "目前为止累计和：" << sum << endl; // 输出当前累计和
+    } while (num != 0); // 当输入的数字不是 0 时继续循环
+    return 0; // 返回0表示程序正常结束
 }

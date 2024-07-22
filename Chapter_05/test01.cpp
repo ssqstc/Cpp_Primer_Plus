@@ -1,17 +1,36 @@
 #include "iostream"
 using namespace std;
 
+/*
+知识点总结和注意点：
+1. 输入和输出：
+   - 使用 `cin` 获取用户输入的两个整数。
+   - 使用 `cout` 输出结果。
+
+2. for 循环：
+   - 使用 `for` 循环从第一个输入的整数到第二个输入的整数进行累加。
+   - 计算范围内所有整数的和。
+
+注意点：
+- 确保第一个输入的整数小于第二个输入的整数。
+- 使用合理的变量名以增强代码的可读性。
+*/
+
 int main()
 {
-    int num1, num2, sum = 0;
+    int num1, num2, sum = 0;  // 定义变量
     cout << "输入两个整数\n";
     cout << "第一个较小的整数：";
-    cin >> num1;
+    cin >> num1;  // 获取第一个整数
     cout << "第二个较大的整数：";
-    cin >> num2;
+    cin >> num2;  // 获取第二个整数
+
+    // 使用 for 循环计算范围内所有整数的和
     for (int i = num1; i <= num2; ++i) {
         sum += i;
     }
+
+    // 输出结果
     cout << num1 << "~" << num2 << "所有整数和为：" << sum;
-    return 0;
+    return 0;  // 返回0表示程序正常结束
 }
