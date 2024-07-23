@@ -1,7 +1,3 @@
-#include "iostream"
-using namespace std;
-
-int main(){
     // 提供函数定义
     // 提供函数原型
     // 调用函数
@@ -84,6 +80,3 @@ int main(){
 //
 //    p_f1 ap[5];
 //    p_f2 (*pa)[10];
-
-    return 0;
-}
