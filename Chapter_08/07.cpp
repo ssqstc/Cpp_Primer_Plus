@@ -1,54 +1,62 @@
 #include "iostream"
 using namespace std;
 
-string version1(const string &s1, const string &s2);
-const string &version2(string &s1, const string &s2);
-const string &version3(string &s1, const string &s2);
+/*
+ * 知识点：
+ * 1. 引用：引用参数的使用。
+ * 2. const：常量引用和返回常量引用。
+ * 3. 函数返回类型：返回 string 对象和返回 string 引用的差异。
+ * 4. 临时对象：返回局部变量的引用导致的问题。
+ *
+ * 注意点：
+ * 1. version2 会修改原字符串，且返回的是修改后的字符串引用。
+ * 2. version3 返回局部变量的引用，编译器会警告或错误，因为局部变量会在函数结束时销毁。
+ */
+
+string version1(const string &s1, const string &s2); // 版本1：返回新的字符串
+const string &version2(string &s1, const string &s2); // 版本2：修改原字符串并返回其引用
+const string &version3(string &s1, const string &s2); // 版本3：错误，返回局部变量的引用
 
 int main(){
     string input, result, copy;
-    cout << "Enter a string: ";
-    getline(cin, input); // 读取用户输入的字符串
-    copy = input; // 复制输入字符串以进行后续操作
+    cout << "Enter a string: "; // 输入字符串
+    getline(cin, input); // 获取一行输入
+    copy = input; // 复制输入的字符串
 
-    cout << "Your string as entered: " << input << endl;    // 输出用户输入的字符串
-    result = version1(input, "***"); // 调用 version1
-    cout << "Your string enhanced: " << result << endl;     // 输出 version1 返回的字符串
-    cout << "Your original string: " << input << endl;      // 输出原始字符串
-
-    cout << "-----------------------------" << endl;
-    result = version2(input, "###"); // 调用 version2
-    cout << "Your string enhanced: " << result << endl;     // 输出 version2 返回的字符串
-    cout << "Your original string: " << input << endl;      // 输出修改后的原始字符串
+    cout << "Your string as entered: " << input << endl; // 输出输入的字符串
+    result = version1(input, "***"); // 调用 version1，不修改原字符串
+    cout << "Your string enhanced: " << result << endl; // 输出增强后的字符串
+    cout << "Your original string: " << input << endl; // 输出原始字符串
 
     cout << "-----------------------------" << endl;
-    result = version3(copy, "@@@"); // 调用 version3
-    cout << "Your string enhanced: " << result << endl;     // 输出 version3 返回的字符串
-    cout << "Your original string: " << copy << endl;      // 输出复制的字符串
+    result = version2(input, "###"); // 调用 version2，修改原字符串
+    cout << "Your string enhanced: " << result << endl; // 输出增强后的字符串
+    cout << "Your original string: " << input << endl; // 输出原始字符串
+
+    cout << "-----------------------------" << endl;
+    result = version3(copy, "@@@"); // 调用 version3，错误：返回局部变量的引用
+    cout << "Your string enhanced: " << result << endl; // 输出增强后的字符串
+    cout << "Your original string: " << copy << endl; // 输出原始字符串
 
     return 0;
 }
 
-// 返回一个string对象的函数
 string version1(const string &s1, const string &s2) {
-    // 创建一个局部变量 temp 来存储 s2 + s1 + s2
+    // 返回一个新的字符串，原字符串不受影响
     string temp;
-    temp = s2 + s1 + s2;
-    return temp; // 返回 temp 的值，调用者接收一个新的字符串对象
+    temp = s2 + s1 + s2; // 拼接字符串
+    return temp;
 }
 
-// 返回一个指向原字符串的const引用
 const string &version2(string &s1, const string &s2) {
-    // 修改传入的字符串 s1 为 s2 + s1 + s2
-    s1 = s2 + s1 + s2;
-    return s1; // 返回 s1 的引用
+    // 修改原字符串并返回其引用
+    s1 = s2 + s1 + s2; // 拼接字符串并修改原字符串
+    return s1;
 }
 
-// 错误示例：返回局部变量的引用
 const string &version3(string &s1, const string &s2) {
-    // 创建一个局部变量 temp 来存储 s2 + s1 + s2
+    // 错误：返回局部变量的引用
     string temp;
-    temp = s2 + s1 + s2;
-    // 返回局部变量 temp 的引用，导致未定义行为
-    return temp; // temp 在函数结束时会被销毁
+    temp = s2 + s1 + s2; // 拼接字符串
+    return temp; // 返回局部变量的引用，会导致错误
 }

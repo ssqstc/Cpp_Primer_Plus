@@ -1,24 +1,34 @@
 #include "iostream"
 using namespace std;
-// 引用的属性和特别之处
-double cube(double a); // 值传递的方式声明立方函数
-double recube(double &ra); // 引用的方式声明立方函数
+
+/*
+ * 知识点：
+ * 1. 值传递：函数参数通过值传递，对参数的修改不会影响实际参数。
+ * 2. 引用传递：函数参数通过引用传递，对参数的修改会直接影响实际参数。
+ *
+ * 注意点：
+ * 1. 值传递：函数内部对参数的修改仅作用于参数的副本，实际参数不受影响。
+ * 2. 引用传递：引用传递使得函数内部对参数的修改直接影响实际参数，需谨慎使用。
+ */
+
+double cube(double a);   // 值传递，计算立方值
+double recube(double &ra);  // 引用传递，计算立方值并修改原值
 
 int main() {
-    double x = 3.0; // 定义并初始化变量 x
-    // 输出 x 的立方和 x 的值
-    cout << cube(x) << " = cube of " << x << endl; // 27 = cube of 3
-    // 输出通过引用计算 x 的立方后的结果和 x 的值
-    cout << recube(x) << " = cube of " << x << endl; // 27 = cube of 27
+    double x = 3.0;  // 定义 double 类型变量 x 并初始化为 3.0
+    cout << cube(x) << " = cube of " << x << endl;  // 调用 cube 函数并输出结果
+    cout << recube(x) << " = cube of " << x << endl;  // 调用 recube 函数并输出结果
     return 0;
 }
 
-double cube(double a) { // 值传递的方式定义立方函数
-    a *= a * a; // 计算 a 的立方
-    return a;
+// 值传递，计算立方值
+double cube(double a) {
+    a *= a * a;  // 计算 a 的立方值
+    return a;  // 返回立方值
 }
 
-double recube(double &ra) { // 引用的方式定义立方函数
-    ra *= ra * ra; // 计算 ra 的立方，并直接修改 ra 的值
-    return ra;
+// 引用传递，计算立方值并修改原值
+double recube(double &ra) {
+    ra *= ra * ra;  // 计算 ra 的立方值并修改原值
+    return ra;  // 返回立方值
 }

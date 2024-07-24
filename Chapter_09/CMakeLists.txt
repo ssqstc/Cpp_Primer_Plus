@@ -1,15 +1,15 @@
 add_executable(01_Chapter09 01_main_Chapter09.cpp 01_file_Chapter09.cpp)
 add_executable(04_Chapter09 04_Chapter09.cpp)
-add_executable(06_Chapter09 06_mian_Chapter09.cpp 06_file_Chapter09.cpp)
-add_executable(08_Chapter09 08_mian_Chapter09.cpp 08_file_Chapter09.cpp)
+add_executable(06_Chapter09 06_main_Chapter09.cpp 06_file_Chapter09.cpp)
+add_executable(08_Chapter09 08_main_Chapter09.cpp 08_file_Chapter09.cpp)
 add_executable(09_Chapter09 09_Chapter09.cpp)
 add_executable(10_Chapter09 10_Chapter09.cpp)
-add_executable(11_Chapter09 11_mian_Chapter09.cpp 11_file_Chapter09.cpp)
+add_executable(11_Chapter09 11_main_Chapter09.cpp 11_file_Chapter09.cpp)
 add_executable(review_Chapter09 review_Chapter09.cpp)
-add_executable(test01_Chapter09 test01_mian_Chapter09.cpp test01_file_Chapter09.cpp)
+add_executable(test01_Chapter09 test01_main_Chapter09.cpp test01_file_Chapter09.cpp)
 add_executable(test02_Chapter09 test02_Chapter09.cpp)
 add_executable(test03_Chapter09 test03_Chapter09.cpp)
-add_executable(test04_Chapter09 test04_mian_Chapter09.cpp test04_file_Chapter09.cpp)
+add_executable(test04_Chapter09 test04_main_Chapter09.cpp test04_file_Chapter09.cpp)
 
 
 

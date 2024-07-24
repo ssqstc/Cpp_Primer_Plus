@@ -1,69 +1,81 @@
 #include "iostream"
 using namespace std;
 
-const int ArSize = 80;
-char *left(const char *str, int n = 1);     // 函数声明：字符串处理，默认参数为1
-unsigned long left(unsigned long num, unsigned int ct); // 函数声明：整型处理
+/*
+知识点：
+1. 函数重载：定义了两个同名的 left 函数，一个处理字符串，一个处理整数。
+2. 动态内存分配：在 left 函数中使用 new 运算符为字符串分配内存。
+3. 指针操作：使用指针操作字符数组，处理字符串。
+4. 位操作：通过不断除以 10 的方式获取整数的前几位。
+5. 常量指针：函数参数中使用 const char*，表示指向常量字符的指针，防止修改传入的字符串。
+
+注意点：
+1. 内存管理：动态分配内存后，需要在适当时候使用 delete 释放，防止内存泄漏。
+2. 指针边界：处理字符串时需注意不要越界，尤其是在复制字符串时。
+3. 类型转换：在处理不同类型的数据时，需注意数据类型的转换和范围。
+4. 默认参数：left 函数中 n 的默认参数为 1，调用时可省略。
+*/
+
+const int ArSize = 80; // 定义常量数组大小
+
+char *left(const char *str, int n = 1);     // 处理字符串的函数原型，默认参数 n 为 1
+unsigned long left(unsigned long num, unsigned int ct); // 处理整数的函数原型
 
 int main(){
-    const char *trip = "Hawaii"; // 定义字符串 trip
-    unsigned long n = 12345678; // 定义无符号长整型数 n
+    const char *trip = "Hawaii"; // 定义字符串常量
+    unsigned long n = 12345678; // 定义整数变量
     int i;
     char *temp;
 
+    // 循环处理并输出结果
     for (i = 0; i < 10; i++) {
-        // 循环调用并输出 left 函数结果
-        cout << left(n, i) << endl; // 输出取前 i 位后的数字
-        temp = left(trip, i);
-        cout << temp << endl; // 输出取前 i 个字符后的字符串
+        cout << left(n, i) << endl; // 输出整数前 i 位
+        temp = left(trip, i); // 获取字符串前 i 个字符
+        cout << temp << endl; // 输出获取的字符串
         delete []temp; // 释放动态分配的内存
     }
 
     return 0;
 }
 
-// 定义字符串取前几位函数
+// 函数定义：返回字符串的前 n 个字符
 char *left(const char *str, int n){
-    int m = 0;    // 初始化计数器为0
-    while (m < n && str[m] != '\0'){
-        // 计算字符串前n个字符的实际长度
+    int m = 0; // 计数器初始化
+    while (m < n && str[m] != '\0'){ // 计算实际需要的字符数
         m++;
     }
-    char *p = new char[m + 1];
-    // 分配新的字符数组内存，比实际长度多1以存放终止符
+    char *p = new char[m + 1]; // 动态分配内存
     int i;
-    for (i = 0; i < m; ++i) {
-        // 复制前m个字符到新数组
+    for (i = 0; i < m; ++i) { // 复制前 m 个字符
         p[i] = str[i];
     }
-    p[i] = '\0';  // 添加字符串终止符
-    return p;     // 返回新的字符串
+    p[i] = '\0'; // 添加字符串结束符
+    return p; // 返回新字符串指针
 }
 
-// 定义整形取前几位函数
+// 函数定义：返回整数的前 ct 位
 unsigned long left(unsigned long num, unsigned int ct){
-    unsigned long n = num;   // 将传入参数赋值给n，方便后续操作
-    int count = 1;           // 初始化整形位数计数器为1
+    unsigned long n = num;   // 临时保存原始数值
+    int count = 1;           // 计数器初始化
+
+    // 处理特殊情况
     if (0 == num || 0 == ct){
-        // 如果传入的数字为0，或者需要取的位数为0，则直接返回0
         return 0;
     }
+
+    // 计算数字的总位数
     while (n /= 10){
-        // 将n除以10，去掉最低位，同时计数器加1，得出整形的位数
         ++count;
     }
+
+    // 若要求的位数少于实际位数
     if (count > ct){
-        // 如果数字的位数大于需要取的位数
         ct = count - ct;
-        // 计算需要去掉的位数
         while (ct--){
-            // 去掉多余的位数
             num /= 10;
         }
         return num;
-        // 返回处理后的数字
     } else {
         return num;
-        // 如果数字的位数不大于需要取的位数，直接返回原数字
     }
 }
