@@ -28,9 +28,9 @@ public:
     friend ostream& operator<<(ostream& os, const abstr_emp& e);
 
     // 纯虚析构函数，确保类为抽象类
-    virtual ~abstr_emp() = 0;
+    virtual ~abstr_emp() {};
 };
-abstr_emp::~abstr_emp() {} // 抽象基类的析构函数定义
+//abstr_emp::~abstr_emp() {} // 抽象基类的析构函数定义
 
 // 派生类 employee，继承自 abstr_emp，表示普通员工
 class employee : public abstr_emp {

@@ -11,7 +11,7 @@ void abstr_emp::setAll() {
 // 设置员工的名字、姓氏和职位
     cout << "Enter your first name: ";
     getline(cin, fname); // 获取名字
-    cout << "Enter your last name: "";
+    cout << "Enter your last name: ";
     getline(cin, lname); // 获取姓氏
     cout << "Enter your job: ";
     getline(cin, job); // 获取职位
