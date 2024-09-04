@@ -28,16 +28,14 @@ public:
     friend ostream& operator<<(ostream& os, const abstr_emp& e);
 
     // 纯虚析构函数，确保类为抽象类
-    virtual ~abstr_emp() {};
+    virtual ~abstr_emp() = 0;
 };
-//abstr_emp::~abstr_emp() {} // 抽象基类的析构函数定义
 
 // 派生类 employee，继承自 abstr_emp，表示普通员工
 class employee : public abstr_emp {
 public:
     // 默认构造函数
     employee() : abstr_emp() {}
-
     // 带参数的构造函数，调用基类构造函数初始化
     employee(const string& fn, const string& ln, const string& j) : abstr_emp(fn, ln, j) {}
 

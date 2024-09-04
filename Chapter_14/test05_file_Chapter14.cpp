@@ -1,6 +1,8 @@
 #include "test05_head_Chapter14.h"
 
 // abstr_emp 类的成员函数实现
+abstr_emp::~abstr_emp() {} // 抽象基类的析构函数定义
+
 void abstr_emp::showAll() const {
 // 输出员工的名字、姓氏和职位
     cout << "name: " << fname << ' ' << lname << endl;
